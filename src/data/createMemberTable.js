@@ -1,6 +1,6 @@
 import pool from "../config/db.js";
 
-const createUserTable = async () => {
+const createMemberTable = async () => {
   const queryText = `
   CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -17,4 +17,4 @@ const createUserTable = async () => {
   }
 }; 
 
-export default createUserTable;
+export default createMemberTable;

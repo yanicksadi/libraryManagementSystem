@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/db.js'
-import userRoutes from "./routes/userRoutes.js"
+import memberRoutes from "./routes/memberRoutes.js"
 import errorHandling from "./middlewares/errorhandler.js"
-import createUserTable from './data/createUserTable.js';
-
+import createMemberTable from './data/createMemberTable.js';
+import borrowRoutes from './routes/borrowRoutes.js'
 
 dotenv.config();
 
@@ -17,14 +17,15 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-app.use("/api", userRoutes);
+app.use("/api", memberRoutes);
+app.use("/api", borrowRoutes);
 
 //Error handling middleware
 app.use(errorHandling);
 
 
 //Create table  before starting server
-createUserTable();  
+createMemberTable();  
 
 
 //Testing  POSTGRES Connection

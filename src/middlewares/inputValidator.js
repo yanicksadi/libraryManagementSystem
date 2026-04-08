@@ -1,12 +1,12 @@
 import joi from "joi";
 
-const userScheme =  joi.object({
+const memberScheme =  joi.object({
   name: joi.string().min(3).required(),
   email: joi.string().email().required(),
 });
 
-const validateUser = (req, res, next) => {
-  const { error } = userScheme.validate(req.body);
+const validateMember = (req, res, next) => {
+  const { error } = memberScheme.validate(req.body);
   if (error)
     return res.status(400).json({
       status: 400,
@@ -15,4 +15,4 @@ const validateUser = (req, res, next) => {
   next();
 };
 
-export default validateUser;
+export default validateMember;

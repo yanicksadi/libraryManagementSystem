@@ -37,7 +37,7 @@ CREATE TABLE borrow_records (
 
 
 INSERT INTO authors (name)
-VALUES ('J.D. Salinger')
+VALUES ('J.D. Salinger');
 
 INSERT INTO books (title, author_id)
 VALUES ('Peace of Mind', 1);
@@ -49,7 +49,7 @@ INSERT INTO members (name, email)
 VALUES ('Yanick','nckmuhire@gmail.com'),
  ('SADI','sad@gmail.com');
 
-INSERT INTO borrow_records (book_id, member_id, borrow_date, return_date) VALUES (1,1,'2025_01_01', NULL);
+INSERT INTO borrow_records (book_id, member_id, borrow_date, return_date) VALUES (1,1,'2025-01-01', NULL);
 
 SELECT 
     books.title, 

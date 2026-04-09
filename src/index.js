@@ -10,7 +10,7 @@ import borrowRoutes from './routes/borrowRoutes.js'
 dotenv.config();
 
 const app = express();
-const port = process.env.port || 3001;
+const port = process.env.PORT || 3001;
 
 //MiddleWares
 app.use(express.json());
@@ -36,5 +36,5 @@ app.get("/", async(req,res) => {
 
 //Server Running
 app.listen(port, () => {
-  console.log(`our port is very much running on http://localhost:${port}`)
+  console.log(`our port is running on http://localhost:${port}`)
 })

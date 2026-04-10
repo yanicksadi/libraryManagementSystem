@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import sequelize from "./config/sequelize.js";
+import sequelize from "./src/config/sequelize.js";
 
-import memberRoutes from "./routes/memberRoutes.js"
-import errorHandling from "./middlewares/errorhandler.js"
-import borrowRoutes from './routes/borrowRoutes.js';
+import memberRoutes from "./src/routes/memberRoutes.js";
+import borrowRoutes from './src/routes/borrowRoutes.js';
+import authorRoutes from "./src/routes/authorRoutes.js";
+import bookRoutes from "./src/routes/bookRoutes.js";
+
+import errorHandling from "./src/middlewares/errorhandler.js"
+
 
 dotenv.config();
 
@@ -21,6 +25,9 @@ app.use(cors());
 //Routes
 app.use("/api", memberRoutes);
 app.use("/api", borrowRoutes);
+app.use("/api/", authorRoutes);
+app.use("/api/",bookRoutes);
+
 
 //Error handling middleware
 app.use(errorHandling);

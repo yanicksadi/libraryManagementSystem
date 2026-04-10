@@ -16,7 +16,7 @@ const Member = sequelize.define("Member", {
   },
 },
   {
-    tableName: "Members",
+    tableName: "members",
   }
 );
 

@@ -1,4 +1,4 @@
-import {Book, Author} from "../models/index.js"
+import {Book, Author} from "../models/index.js";
 
 //  create a book
 

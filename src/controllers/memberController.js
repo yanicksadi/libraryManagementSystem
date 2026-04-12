@@ -1,5 +1,5 @@
 import Member from "../models/Member.js";
-
+import {BorrowRecord} from "../models/index.js";
 //Standardized Response function
 
 const handleResponse = (res, status,message, data = null) => {
@@ -77,13 +77,29 @@ export const deleteMember = async (req, res, next) => {
     const member = await Member.findByPk(req.params.id);
 
     if(!member){
-      return handleResponse(res, 404, "Member not found");
+      return res.status(404).json({
+        message: "Member not found",
+      });
+    }
+    const activeBorrow = await BorrowRecord.findOne({
+      where: {
+        member_id: member.id,
+        return_date: null,
+      },
+    });
+
+    if (activeBorrow) {
+      return res.status(400).json({
+        message: "Cannot delete member with active borrowed books",
+      });
     }
 
     await member.destroy();
 
-    handleResponse(res, 200, "Member deleted successfully")
-  } catch(err){
-    next(err);
+    res.status(200).json({
+      message: "Member deleted successfully",
+    }); 
+  } catch(error){
+    next(error);
   }
 };

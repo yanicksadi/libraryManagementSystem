@@ -27,6 +27,20 @@ export const createBorrow = async (req, res, next) => {
   try {
     const { member_id, book_id } = req.body;
 
+    const member = await Member.findByPk(member_id);
+    if (!member) {
+      return res.status(404).json({
+        message: "Member not found",
+      });
+    }
+
+    const book = await Book.findByPk(book_id);
+    if (!book) {
+      return res.status(404).json({
+        message: "Book not found",
+      });
+    }
+
     const newBorrow = await BorrowRecord.create({
       member_id,
       book_id,

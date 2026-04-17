@@ -8,8 +8,9 @@ import borrowRoutes from './src/routes/borrowRoutes.js';
 import authorRoutes from "./src/routes/authorRoutes.js";
 import bookRoutes from "./src/routes/bookRoutes.js";
 
-import errorHandling from "./src/middlewares/errorhandler.js"
-
+import errorHandling from "./src/middlewares/errorhandler.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./src/config/swagger.js";
 
 dotenv.config();
 
@@ -22,11 +23,17 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
+//Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 //Routes
 app.use("/api", memberRoutes);
 app.use("/api", borrowRoutes);
 app.use("/api/", authorRoutes);
 app.use("/api/",bookRoutes);
+app.get("/", (req, res) => {
+  res.send("Library API is running 🚀");
+});
 
 
 //Error handling middleware

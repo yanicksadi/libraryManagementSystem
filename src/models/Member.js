@@ -21,3 +21,4 @@ const Member = sequelize.define("Member", {
 );
 
 export default Member;
+

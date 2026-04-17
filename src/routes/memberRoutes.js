@@ -1,15 +1,46 @@
 import express from "express";
-import { createMember, deleteMember, getAllMembers, getMemberById, updateMemberById } from "../controllers/memberController.js";
-import validate from "../validations/validate.js";
-import { memberSchema } from "../validations/memberValidator.js";
+import {
+  createMember,
+  getAllMembers
+} from "../controllers/memberController.js";
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Members
+ *   description: Member management
+ */
 
-router.post("/members", validate, createMember);
+/**
+ * @swagger
+ * /api/members:
+ *   post:
+ *     summary: Create a member
+ *     tags: [Members]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Member'
+ *     responses:
+ *       201:
+ *         description: Member created
+ */
+router.post("/members", createMember);
+
+/**
+ * @swagger
+ * /api/members:
+ *   get:
+ *     summary: Get all members
+ *     tags: [Members]
+ *     responses:
+ *       200:
+ *         description: List of members
+ */
 router.get("/members", getAllMembers);
-router.get("/members/:id", getMemberById);
-router.put("/members/:id", validate, updateMemberById);
-router.delete("/members/:id", deleteMember); 
 
 export default router;
